@@ -1,11 +1,20 @@
 package com.epam.courses.springcore.pojo;
 
 
+import java.util.List;
+
 public class User {
 
     private long id;
     private String userName;
     private String email;
+    private List<Ticket> bookedTickets;
+
+    public User(long id, String userName, String email) {
+        this.id = id;
+        this.userName = userName;
+        this.email = email;
+    }
 
     public long getId() {
         return id;
@@ -29,5 +38,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Ticket> getBookedTickets() {
+        return bookedTickets;
+    }
+
+    public void setBookedTickets(List<Ticket> bookedTickets) {
+        this.bookedTickets = bookedTickets;
     }
 }

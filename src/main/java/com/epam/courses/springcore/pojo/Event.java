@@ -1,6 +1,7 @@
 package com.epam.courses.springcore.pojo;
 
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -8,7 +9,7 @@ public class Event {
 
     private String name;
     private String rating;
-    private double ticketPrice;
+    private BigDecimal ticketPrice;
     private Date eventDate;
     private String auditoriumName;
 
@@ -28,11 +29,11 @@ public class Event {
         this.rating = rating;
     }
 
-    public double getTicketPrice() {
+    public BigDecimal getTicketPrice() {
         return ticketPrice;
     }
 
-    public void setTicketPrice(double ticketPrice) {
+    public void setTicketPrice(BigDecimal ticketPrice) {
         this.ticketPrice = ticketPrice;
     }
 
