@@ -9,7 +9,8 @@ public class Event {
     private String name;
     private String rating;
     private double ticketPrice;
-    private List<Date> eventDates;
+    private Date eventDate;
+    private String auditoriumName;
 
     public String getName() {
         return name;
@@ -35,11 +36,19 @@ public class Event {
         this.ticketPrice = ticketPrice;
     }
 
-    public List<Date> getEventDates() {
-        return eventDates;
+    public Date getEventDate() {
+        return eventDate;
     }
 
-    public void setEventDates(List<Date> eventDates) {
-        this.eventDates = eventDates;
+    public void setEventDate(Date eventDate) {
+        this.eventDate = eventDate;
+    }
+
+    public String getAuditoriumName() {
+        return auditoriumName;
+    }
+
+    public void setAuditoriumName(String auditoriumName) {
+        this.auditoriumName = auditoriumName;
     }
 }

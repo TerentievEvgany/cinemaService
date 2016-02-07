@@ -21,7 +21,7 @@
                 <value>classpath:auditorium_c.properties</value>
             </list>
         </property>
-        <property name="ignoreResourceNotFound" value="true" />
+        <property name="ignoreResourceNotFound" value="true"/>
     </bean>
 
     <bean id="mapUserDao" class="com.epam.courses.springcore.dao.MapUserDAO">
@@ -34,21 +34,22 @@
     </bean>
 
     <bean id="userService" class="com.epam.courses.springcore.services.UserSevice">
-        <constructor-arg ref="mapUserDao" />
+        <constructor-arg ref="mapUserDao"/>
     </bean>
 
     <bean id="bookingService" class="com.epam.courses.springcore.services.BookingService">
-        <constructor-arg ref="mapAuditoriumDao" />
-        <constructor-arg ref="mapEventDao" />
-        <constructor-arg ref="mapUserDao" />
+        <constructor-arg ref="mapAuditoriumDao"/>
+        <constructor-arg ref="mapEventDao"/>
+        <constructor-arg ref="mapUserDao"/>
     </bean>
 
     <bean id="auditoriumService" class="com.epam.courses.springcore.services.AuditoriumService">
-        <constructor-arg ref="mapAuditoriumDao" />
+        <constructor-arg ref="mapAuditoriumDao"/>
     </bean>
 
     <bean id="eventService" class="com.epam.courses.springcore.services.EventService">
-        <constructor-arg ref="mapEventDao" />
+        <constructor-arg ref="mapEventDao"/>
+        <constructor-arg ref="mapAuditoriumDao"/>
     </bean>
 
 </beans>

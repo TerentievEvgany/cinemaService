@@ -1,16 +1,21 @@
 package com.epam.courses.springcore.services;
 
 
+import com.epam.courses.springcore.dao.MapAuditoriumDAO;
 import com.epam.courses.springcore.dao.MapEventDAO;
+import com.epam.courses.springcore.pojo.Auditorium;
 import com.epam.courses.springcore.pojo.Event;
 
+import java.util.Date;
 import java.util.List;
 
 public class EventService {
     private MapEventDAO mapEventDAO;
+    private MapAuditoriumDAO mapAuditoriumDAO;
 
-    public EventService(MapEventDAO mapEventDAO) {
+    public EventService(MapEventDAO mapEventDAO, MapAuditoriumDAO mapAuditoriumDAO) {
         this.mapEventDAO = mapEventDAO;
+        this.mapAuditoriumDAO = mapAuditoriumDAO;
     }
 
     public void createEvent(Event event) {
@@ -28,4 +33,9 @@ public class EventService {
     public List<Event> getAllEvents() {
         return mapEventDAO.getAll();
     }
+
+    public void assignAuditorium(Event event, Auditorium auditorium, Date date) {
+        //TODO: add impementation
+    }
+
 }
