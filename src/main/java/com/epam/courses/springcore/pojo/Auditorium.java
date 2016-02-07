@@ -6,6 +6,12 @@ public class Auditorium {
     private String vipSeats;
     private int seatsNumber;
 
+    public Auditorium(String name, String vipSeats, int seatsNumber) {
+        this.name = name;
+        this.vipSeats = vipSeats;
+        this.seatsNumber = seatsNumber;
+    }
+
     public String getName() {
         return name;
     }

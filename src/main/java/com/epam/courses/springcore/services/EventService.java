@@ -1,4 +1,4 @@
-package com.epam.courses.springcore.serices;
+package com.epam.courses.springcore.services;
 
 
 import com.epam.courses.springcore.dao.MapEventDAO;
@@ -8,6 +8,10 @@ import java.util.List;
 
 public class EventService {
     private MapEventDAO mapEventDAO;
+
+    public EventService(MapEventDAO mapEventDAO) {
+        this.mapEventDAO = mapEventDAO;
+    }
 
     public void createEvent(Event event) {
         mapEventDAO.createEvent(event);

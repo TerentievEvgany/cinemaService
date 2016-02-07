@@ -1,4 +1,4 @@
-package com.epam.courses.springcore.serices;
+package com.epam.courses.springcore.services;
 
 import com.epam.courses.springcore.dao.MapUserDAO;
 import com.epam.courses.springcore.pojo.User;
@@ -6,6 +6,10 @@ import com.epam.courses.springcore.pojo.User;
 public class UserSevice {
 
     private MapUserDAO userDAO;
+
+    public UserSevice(MapUserDAO userDAO) {
+        this.userDAO = userDAO;
+    }
 
     public void registerUser(User user) {
         userDAO.createUser(user);
