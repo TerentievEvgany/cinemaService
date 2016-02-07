@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+ 		http://www.springframework.org/schema/beans
+ 		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+    <bean id="user" class="com.epam.courses.springcore.pojo.User" scope="prototype">
+    </bean>
+
+    <bean id="auditorium" class="com.epam.courses.springcore.pojo.Auditorium" scope="prototype">
+    </bean>
+
+    <bean id="event" class="com.epam.courses.springcore.pojo.Event" scope="prototype">
+    </bean>
+
+    <bean id="mapUserDao" class="com.epam.courses.springcore.dao.MapUserDAO">
+    </bean>
+
+    <bean id="mapEventDao" class="com.epam.courses.springcore.dao.MapEventDAO">
+    </bean>
+
+    <bean id="mapAuditoriumDao" class="com.epam.courses.springcore.dao.MapAuditoriumDAO">
+    </bean>
+
+</beans>
