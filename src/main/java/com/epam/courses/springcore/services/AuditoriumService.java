@@ -28,7 +28,7 @@ public class AuditoriumService {
         return auditoriumDAO.getAuditoriumByName(name).getSeatsNumber();
     }
 
-    public String getVipSeats(String name) {
+    public List<String> getVipSeats(String name) {
         return auditoriumDAO.getAuditoriumByName(name).getVipSeats();
     }
 }

@@ -27,8 +27,7 @@ public class BookingService {
      * Get all purchased tickets for event for specific date.
      */
     public List<Ticket> getTicketsForEvent(Event event, Date date) {
-        //TODO: add implementation
-        return null;
+        return mapEventDAO.getTicketsForEvent(event, date);
     }
 
     /**
@@ -36,7 +35,7 @@ public class BookingService {
      * Purchased tickets for particular event should be stored.
      */
     public void bookTicket(User user, Ticket ticket){
-        //TODO: add implementation
+        userDAO.addBookedTicket(ticket, user);
     }
 
     /**

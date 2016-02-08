@@ -1,12 +1,18 @@
 package com.epam.courses.springcore.dao;
 
+import com.epam.courses.springcore.pojo.Ticket;
 import com.epam.courses.springcore.pojo.User;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class MapUserDAO implements UserDao{
 
     private static Map<Long,User> users;
+
+    static {
+        users = new HashMap<Long, User>();
+    }
 
 
     public void createUser(User user) {
@@ -19,7 +25,7 @@ public class MapUserDAO implements UserDao{
 
     public User getUserByName(String name) {
         for (Long key: users.keySet()){
-            if (users.get(key).getEmail() == name) {
+            if (users.get(key).getUserName() == name) {
                 return users.get(key);
             }
         }
@@ -27,7 +33,10 @@ public class MapUserDAO implements UserDao{
     }
 
     public User getUserById(long id) {
-        return users.get(id);
+        if (users.get(id) != null) {
+            return users.get(id);
+        }
+        return null;
     }
 
     public User getUserByEmail(String email) {
@@ -37,6 +46,10 @@ public class MapUserDAO implements UserDao{
             }
         }
         return null;
+    }
+
+    public void addBookedTicket(Ticket ticket, User user) {
+        users.get(user.getId()).getBookedTickets().add(ticket);
     }
 
     public static Map<Long, User> getUsers() {

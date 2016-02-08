@@ -38,7 +38,7 @@ public class EventService {
      * Assign auditorium for event for specific date. Only one auditorium for Event for specific dateTime
      */
     public void assignAuditorium(Event event, Auditorium auditorium, Date date) {
-        //TODO: add impementation
+        mapEventDAO.assignAuditorium(event, auditorium, date);
     }
 
 }

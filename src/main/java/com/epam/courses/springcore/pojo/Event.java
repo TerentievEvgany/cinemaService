@@ -11,7 +11,8 @@ public class Event {
     private String rating;
     private BigDecimal ticketPrice;
     private Date eventDate;
-    private String auditoriumName;
+    private Auditorium auditorium;
+    private List<Ticket> tickets;
 
     public String getName() {
         return name;
@@ -45,11 +46,19 @@ public class Event {
         this.eventDate = eventDate;
     }
 
-    public String getAuditoriumName() {
-        return auditoriumName;
+    public Auditorium getAuditorium() {
+        return auditorium;
     }
 
-    public void setAuditoriumName(String auditoriumName) {
-        this.auditoriumName = auditoriumName;
+    public void setAuditorium(Auditorium auditorium) {
+        this.auditorium = auditorium;
+    }
+
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
     }
 }

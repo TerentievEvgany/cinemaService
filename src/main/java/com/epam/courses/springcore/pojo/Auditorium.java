@@ -1,12 +1,14 @@
 package com.epam.courses.springcore.pojo;
 
+import java.util.List;
+
 public class Auditorium {
 
     private String name;
-    private String vipSeats;
+    private List<String> vipSeats;
     private int seatsNumber;
 
-    public Auditorium(String name, String vipSeats, int seatsNumber) {
+    public Auditorium(String name, List<String> vipSeats, int seatsNumber) {
         this.name = name;
         this.vipSeats = vipSeats;
         this.seatsNumber = seatsNumber;
@@ -20,12 +22,12 @@ public class Auditorium {
         this.name = name;
     }
 
-    public String getVipSeats() {
-        return vipSeats;
+    public void setVipSeats(List<String> vipSeats) {
+        this.vipSeats = vipSeats;
     }
 
-    public void setVipSeats(String vipSeats) {
-        this.vipSeats = vipSeats;
+    public List<String> getVipSeats() {
+        return vipSeats;
     }
 
     public int getSeatsNumber() {

@@ -8,5 +8,4 @@ import java.util.List;
 public interface AuditoriumDAO {
     public List<Auditorium> getAllAuditoriums();
     public Auditorium getAuditoriumByName(String name);
-    public Auditorium getAuditoriumByNameFromList(String name);
 }

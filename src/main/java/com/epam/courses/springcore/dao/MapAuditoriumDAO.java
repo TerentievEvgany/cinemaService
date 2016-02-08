@@ -3,12 +3,17 @@ package com.epam.courses.springcore.dao;
 import com.epam.courses.springcore.pojo.Auditorium;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class MapAuditoriumDAO implements AuditoriumDAO {
 
     private static Map<String, Auditorium> auditoriums;
+
+    static {
+        auditoriums = new HashMap<String, Auditorium>();
+    }
 
     public static Map<String, Auditorium> getAuditoriums() {
         return auditoriums;
@@ -30,12 +35,4 @@ public class MapAuditoriumDAO implements AuditoriumDAO {
         return auditoriums.get(name);
     }
 
-    public Auditorium getAuditoriumByNameFromList(String name) {
-        for (Auditorium auditorium : getAllAuditoriums()) {
-            if (auditorium.getName() == name) {
-                return auditorium;
-            }
-        }
-        return null;
-    }
 }
