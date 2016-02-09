@@ -10,9 +10,17 @@ import java.util.Map;
 public class MapAuditoriumDAO implements AuditoriumDAO {
 
     private static Map<String, Auditorium> auditoriums;
+    private List<Auditorium> list;
 
     static {
         auditoriums = new HashMap<String, Auditorium>();
+    }
+
+    public MapAuditoriumDAO(List<Auditorium> list) {
+        this.list = list;
+        for (Auditorium auditorium: this.list) {
+            auditoriums.put(auditorium.getName(),auditorium);
+        }
     }
 
     public static Map<String, Auditorium> getAuditoriums() {

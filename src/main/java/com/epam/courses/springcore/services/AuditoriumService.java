@@ -12,14 +12,6 @@ public class AuditoriumService {
         this.auditoriumDAO = auditoriumDAO;
     }
 
-    public MapAuditoriumDAO getAuditoriumDAO() {
-        return auditoriumDAO;
-    }
-
-    public void setAuditoriumDAO(MapAuditoriumDAO auditoriumDAO) {
-        this.auditoriumDAO = auditoriumDAO;
-    }
-
     public List<Auditorium> getAuditoriums(){
         return auditoriumDAO.getAllAuditoriums();
     }

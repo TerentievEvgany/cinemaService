@@ -3,6 +3,7 @@ package com.epam.courses.springcore.dao;
 import com.epam.courses.springcore.pojo.Ticket;
 import com.epam.courses.springcore.pojo.User;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,7 +50,13 @@ public class MapUserDAO implements UserDao{
     }
 
     public void addBookedTicket(Ticket ticket, User user) {
-        users.get(user.getId()).getBookedTickets().add(ticket);
+        if (users.get(user.getId()).getBookedTickets() != null) {
+            users.get(user.getId()).getBookedTickets().add(ticket);
+        } else {
+            users.get(user.getId()).setBookedTickets(new ArrayList<Ticket>());
+            users.get(user.getId()).getBookedTickets().add(ticket);
+        }
+
     }
 
     public static Map<Long, User> getUsers() {

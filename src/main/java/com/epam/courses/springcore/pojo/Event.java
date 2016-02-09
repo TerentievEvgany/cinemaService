@@ -4,15 +4,24 @@ package com.epam.courses.springcore.pojo;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 public class Event {
 
     private String name;
-    private String rating;
+    private Rating rating;
     private BigDecimal ticketPrice;
     private Date eventDate;
     private Auditorium auditorium;
     private List<Ticket> tickets;
+
+
+    public Event(String name, Rating rating, BigDecimal ticketPrice, Date eventDate) {
+        this.name = name;
+        this.rating = rating;
+        this.ticketPrice = ticketPrice;
+        this.eventDate = eventDate;
+    }
 
     public String getName() {
         return name;
@@ -22,11 +31,11 @@ public class Event {
         this.name = name;
     }
 
-    public String getRating() {
+    public Rating getRating() {
         return rating;
     }
 
-    public void setRating(String rating) {
+    public void setRating(Rating rating) {
         this.rating = rating;
     }
 

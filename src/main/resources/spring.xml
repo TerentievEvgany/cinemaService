@@ -36,6 +36,11 @@
     </bean>
 
     <bean id="mapAuditoriumDao" class="com.epam.courses.springcore.dao.MapAuditoriumDAO">
+        <constructor-arg>
+            <list>
+                <ref bean="auditorium"/>
+            </list>
+        </constructor-arg>
     </bean>
 
     <bean id="userService" class="com.epam.courses.springcore.services.UserSevice">
