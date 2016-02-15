@@ -1,12 +1,13 @@
 package com.epam.courses.springcore.services;
 
+import com.epam.courses.springcore.dao.AuditoriumDAO;
 import com.epam.courses.springcore.dao.MapAuditoriumDAO;
 import com.epam.courses.springcore.pojo.Auditorium;
 
 import java.util.List;
 
 public class AuditoriumService {
-    private MapAuditoriumDAO auditoriumDAO;
+    private AuditoriumDAO auditoriumDAO;
 
     public AuditoriumService(MapAuditoriumDAO auditoriumDAO) {
         this.auditoriumDAO = auditoriumDAO;

@@ -1,5 +1,6 @@
 package com.epam.courses.springcore.dao;
 
+import com.epam.courses.springcore.pojo.Auditorium;
 import com.epam.courses.springcore.pojo.Event;
 import com.epam.courses.springcore.pojo.Ticket;
 
@@ -12,4 +13,5 @@ public interface EventDAO {
     public Event getByName(String name);
     public List<Event> getAll();
     public List<Ticket> getTicketsForEvent(Event event, Date date);
+    public void assignAuditorium(Event event, Auditorium auditorium, Date date);
 }

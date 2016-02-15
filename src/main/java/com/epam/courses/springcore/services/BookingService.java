@@ -1,8 +1,6 @@
 package com.epam.courses.springcore.services;
 
-import com.epam.courses.springcore.dao.MapAuditoriumDAO;
-import com.epam.courses.springcore.dao.MapEventDAO;
-import com.epam.courses.springcore.dao.MapUserDAO;
+import com.epam.courses.springcore.dao.*;
 import com.epam.courses.springcore.pojo.Event;
 import com.epam.courses.springcore.pojo.Ticket;
 import com.epam.courses.springcore.pojo.User;
@@ -13,13 +11,13 @@ import java.util.Date;
 import java.util.List;
 
 public class BookingService {
-    private MapAuditoriumDAO auditoriumDAO;
-    private MapEventDAO mapEventDAO;
-    private MapUserDAO userDAO;
+    private AuditoriumDAO auditoriumDAO;
+    private EventDAO eventDAO;
+    private UserDao userDAO;
 
-    public BookingService(MapAuditoriumDAO auditoriumDAO, MapEventDAO mapEventDAO, MapUserDAO userDAO) {
+    public BookingService(AuditoriumDAO auditoriumDAO, EventDAO eventDAO, UserDao userDAO) {
         this.auditoriumDAO = auditoriumDAO;
-        this.mapEventDAO = mapEventDAO;
+        this.eventDAO = eventDAO;
         this.userDAO = userDAO;
     }
 
@@ -27,7 +25,7 @@ public class BookingService {
      * Get all purchased tickets for event for specific date.
      */
     public List<Ticket> getTicketsForEvent(Event event, Date date) {
-        return mapEventDAO.getTicketsForEvent(event, date);
+        return eventDAO.getTicketsForEvent(event, date);
     }
 
     /**

@@ -20,20 +20,23 @@ import static org.junit.Assert.*;
  */
 public class CinemaTest {
 
+    private User user = new User(1, "Test", "test@mail.com");
+    private ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+    private  UserSevice userSevice = (UserSevice) ctx.getBean("userService");
+    private EventService eventService = (EventService) ctx.getBean("eventService");
+    private Event event = new Event("First", Rating.HIGH, new BigDecimal(50), new Date());
+    private Auditorium auditorium = ctx.getBean(Auditorium.class);
+    private AuditoriumService auditoriumService = ctx.getBean(AuditoriumService.class);
+    private  BookingService bookingService = ctx.getBean(BookingService.class);
+
     @Test
     public void userRegistrationTest() {
-        User user = new User(1, "Test", "test@mail.com");
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-        UserSevice userSevice = (UserSevice) ctx.getBean("userService");
         userSevice.registerUser(user);
         assertEquals(userSevice.getUserById(user.getId()), user);
     }
 
     @Test
     public void userDeleteTest() {
-        User user = new User(1, "Test", "test@mail.com");
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-        UserSevice userSevice = (UserSevice) ctx.getBean("userService");
         userSevice.registerUser(user);
         userSevice.deleteUser(user);
         assertEquals(userSevice.getUserById(user.getId()), null);
@@ -41,9 +44,6 @@ public class CinemaTest {
 
     @Test
     public void getUserByEmailAndNameTest() {
-        User user = new User(1, "Test", "test@mail.com");
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-        UserSevice userSevice = (UserSevice) ctx.getBean("userService");
         userSevice.registerUser(user);
         assertEquals(userSevice.getUserByEmail(user.getEmail()), user);
         assertEquals(userSevice.getUserByName(user.getUserName()), user);
@@ -51,27 +51,18 @@ public class CinemaTest {
 
     @Test
     public void createEventTest(){
-        Event event = new Event("First", Rating.HIGH, new BigDecimal(50), new Date());
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-        EventService eventService = (EventService) ctx.getBean("eventService");
         eventService.createEvent(event);
         assertEquals(eventService.getEventByName(event.getName()), event);
     }
 
     @Test
     public void getAllEventsTest() {
-        Event event = new Event("First", Rating.HIGH, new BigDecimal(50), new Date());
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-        EventService eventService = (EventService) ctx.getBean("eventService");
         eventService.createEvent(event);
         assertEquals(eventService.getAllEvents(), Arrays.asList(event));
     }
 
     @Test
     public void deleteEventTest() {
-        Event event = new Event("First", Rating.HIGH, new BigDecimal(50), new Date());
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-        EventService eventService = (EventService) ctx.getBean("eventService");
         eventService.createEvent(event);
         eventService.deleteEvent(event);
         assertTrue(eventService.getAllEvents().isEmpty());
@@ -79,10 +70,6 @@ public class CinemaTest {
 
     @Test
     public void assighnAuditoriumTest() {
-        Event event = new Event("First", Rating.HIGH, new BigDecimal(50), new Date());
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-        EventService eventService = (EventService) ctx.getBean("eventService");
-        Auditorium auditorium = ctx.getBean(Auditorium.class);
         eventService.createEvent(event);
         eventService.assignAuditorium(event, auditorium, new Date());
         assertEquals(event.getAuditorium(), auditorium);
@@ -90,18 +77,11 @@ public class CinemaTest {
 
     @Test
     public void getAuditoriumsTest(){
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-        AuditoriumService auditoriumService = ctx.getBean(AuditoriumService.class);
         assertTrue(auditoriumService.getAuditoriums().size() == 1);
     }
 
     @Test
     public void getTicketsForEventTest() {
-        Event event = new Event("First", Rating.HIGH, new BigDecimal(50), new Date());
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-        EventService eventService = (EventService) ctx.getBean("eventService");
-        BookingService bookingService = ctx.getBean(BookingService.class);
-        Auditorium auditorium = ctx.getBean(Auditorium.class);
         eventService.createEvent(event);
         eventService.assignAuditorium(event, auditorium, new Date());
         Ticket ticket_1 = new Ticket(new BigDecimal(75), 10);
