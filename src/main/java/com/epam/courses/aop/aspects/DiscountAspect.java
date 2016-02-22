@@ -35,4 +35,8 @@ public class DiscountAspect {
     public void getDiscountsForUser(JoinPoint joinPoint) {
        //joinPoint.getSignature();
     }*/
+
+    public static Map<Class<?>, Integer> getDiscountTotalCounter() {
+        return discountTotalCounter;
+    }
 }

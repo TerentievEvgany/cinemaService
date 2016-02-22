@@ -19,15 +19,15 @@ public class DiscountService {
      */
     public BigDecimal getDiscountForUser(User user, Event event) {
         BigDecimal discount = new BigDecimal(0);
-        BirthdayStrategy strategy;
+        DiscountStrategy strategy;
 
         if (user.getBirthDate().equals(event.getEventDate())) {
-            strategy = (BirthdayStrategy) strategies.get(0);
+            strategy = strategies.get(0);
             discount = discount.add(new BigDecimal(strategy.getDiscount()));
         }
 
-        if (user.getBookedTickets().size()%10 == 9) {
-            strategy = (BirthdayStrategy) strategies.get(0);
+        if (user.getBookedTickets()!=null && user.getBookedTickets().size()%10 == 9) {
+            strategy = strategies.get(1);
             discount = discount.add(new BigDecimal(strategy.getDiscount()));
         }
         return discount;
