@@ -67,4 +67,8 @@
         <constructor-arg ref="mapAuditoriumDao"/>
     </bean>
 
+    <bean id="counterAspect" class="com.epam.courses.aop.aspects.CounterAspect"></bean>
+
+    <bean id="discountAspect" class="com.epam.courses.aop.aspects.DiscountAspect"></bean>
+
 </beans>

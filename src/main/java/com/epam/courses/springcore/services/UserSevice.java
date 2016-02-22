@@ -8,7 +8,7 @@ public class UserSevice {
 
     private UserDao userDAO;
 
-    public UserSevice(MapUserDAO userDAO) {
+    public UserSevice(UserDao userDAO) {
         this.userDAO = userDAO;
     }
 

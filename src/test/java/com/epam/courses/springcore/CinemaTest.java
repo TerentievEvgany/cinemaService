@@ -1,10 +1,8 @@
 package com.epam.courses.springcore;
 
+import com.epam.courses.aop.aspects.CounterAspect;
 import com.epam.courses.springcore.pojo.*;
-import com.epam.courses.springcore.services.AuditoriumService;
-import com.epam.courses.springcore.services.BookingService;
-import com.epam.courses.springcore.services.EventService;
-import com.epam.courses.springcore.services.UserSevice;
+import com.epam.courses.springcore.services.*;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -12,6 +10,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Map;
 
 import static org.junit.Assert.*;
 
@@ -20,14 +19,18 @@ import static org.junit.Assert.*;
  */
 public class CinemaTest {
 
-    private User user = new User(1, "Test", "test@mail.com");
+    private User user = new User(1, "Test", "test@mail.com", new Date());
     private ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-    private  UserSevice userSevice = (UserSevice) ctx.getBean("userService");
+    private UserSevice userSevice = (UserSevice) ctx.getBean("userService");
     private EventService eventService = (EventService) ctx.getBean("eventService");
     private Event event = new Event("First", Rating.HIGH, new BigDecimal(50), new Date());
     private Auditorium auditorium = ctx.getBean(Auditorium.class);
     private AuditoriumService auditoriumService = ctx.getBean(AuditoriumService.class);
-    private  BookingService bookingService = ctx.getBean(BookingService.class);
+    private BookingService bookingService = ctx.getBean(BookingService.class);
+    private DiscountService discountService = ctx.getBean(DiscountService.class);
+    private Ticket ticket_1 = new Ticket(new BigDecimal(75), 10);
+    private Ticket ticket_2 = new Ticket(new BigDecimal(75), 11);
+    private Ticket ticket_3= new Ticket(new BigDecimal(75), 12);
 
     @Test
     public void userRegistrationTest() {
@@ -84,11 +87,21 @@ public class CinemaTest {
     public void getTicketsForEventTest() {
         eventService.createEvent(event);
         eventService.assignAuditorium(event, auditorium, new Date());
-        Ticket ticket_1 = new Ticket(new BigDecimal(75), 10);
-        Ticket ticket_2 = new Ticket(new BigDecimal(75), 11);
-        Ticket ticket_3= new Ticket(new BigDecimal(75), 12);
         event.setTickets(Arrays.asList(ticket_1, ticket_2,ticket_3));
         assertEquals(bookingService.getTicketsForEvent(event,event.getEventDate()), Arrays.asList(ticket_1, ticket_2,ticket_3));
+    }
+
+    @Test
+    public void setDiscountServiceTest() {
+        event.setTickets(Arrays.asList(ticket_1, ticket_2,ticket_3));
+        bookingService.bookTicket(user, ticket_1);
+        assertTrue(discountService.getDiscountForUser(user,event).equals(new BigDecimal(0)));
+        discountService.getStrategies().get(0).getDiscount();
+    }
+
+    @Test
+    public void aspectTest() {
+        assertTrue(!CounterAspect.getCounter().isEmpty());
     }
 
 }

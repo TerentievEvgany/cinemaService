@@ -1,6 +1,7 @@
 package com.epam.courses.springcore.pojo;
 
 
+import java.util.Date;
 import java.util.List;
 
 public class User {
@@ -9,11 +10,19 @@ public class User {
     private String userName;
     private String email;
     private List<Ticket> bookedTickets;
+    private Date birthDate;
 
     public User(long id, String userName, String email) {
         this.id = id;
         this.userName = userName;
         this.email = email;
+    }
+
+    public User(long id, String userName, String email, Date birthDate) {
+        this.id = id;
+        this.userName = userName;
+        this.email = email;
+        this.birthDate = birthDate;
     }
 
     public long getId() {
@@ -46,5 +55,13 @@ public class User {
 
     public void setBookedTickets(List<Ticket> bookedTickets) {
         this.bookedTickets = bookedTickets;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
     }
 }

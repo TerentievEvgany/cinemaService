@@ -50,11 +50,11 @@ public class MapUserDAO implements UserDao{
     }
 
     public void addBookedTicket(Ticket ticket, User user) {
-        if (users.get(user.getId()).getBookedTickets() != null) {
-            users.get(user.getId()).getBookedTickets().add(ticket);
+        if (user.getBookedTickets() != null) {
+            user.getBookedTickets().add(ticket);
         } else {
-            users.get(user.getId()).setBookedTickets(new ArrayList<Ticket>());
-            users.get(user.getId()).getBookedTickets().add(ticket);
+            user.setBookedTickets(new ArrayList<Ticket>());
+            user.getBookedTickets().add(ticket);
         }
 
     }
