@@ -71,4 +71,6 @@
 
     <bean id="discountAspect" class="com.epam.courses.aop.aspects.DiscountAspect"></bean>
 
+    <bean id="luckyWinnerAspect" class="com.epam.courses.aop.aspects.LuckyWinnerAspect"></bean>
+
 </beans>

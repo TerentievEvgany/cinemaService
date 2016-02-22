@@ -7,15 +7,12 @@ import com.epam.courses.springcore.services.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.Map;
 
 import static org.junit.Assert.*;
 
@@ -113,7 +110,7 @@ public class CinemaTest {
     public void setDiscountServiceTest() {
         event.setTickets(Arrays.asList(ticket_1, ticket_2,ticket_3));
         bookingService.bookTicket(user, ticket_1);
-        assertTrue(discountService.getDiscountForUser(user,event).equals(new BigDecimal(5)));
+        assertTrue(discountService.getDiscountForUser(user,event).getDiscount() == 5);
     }
 
     @Test
@@ -125,8 +122,9 @@ public class CinemaTest {
     public void totalDiscountCounterTest() {
         event.setTickets(Arrays.asList(ticket_1, ticket_2,ticket_3));
         bookingService.bookTicket(user, ticket_1);
-        discountService.getDiscountForUser(user,event);
+        discountService.getDiscountForUser(user,event).getDiscount();
         assertTrue(!DiscountAspect.getDiscountTotalCounter().isEmpty());
+        assertTrue(!DiscountAspect.getDiscountForUserCounter().get(user.getId()).isEmpty());
     }
 
 }

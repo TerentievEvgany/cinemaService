@@ -3,8 +3,6 @@ package com.epam.courses.springcore.services;
 
 import com.epam.courses.springcore.pojo.*;
 
-import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 
 public class DiscountService {
@@ -17,20 +15,19 @@ public class DiscountService {
     /**
      * Returns discount for each ticket for the user on particular event
      */
-    public BigDecimal getDiscountForUser(User user, Event event) {
-        BigDecimal discount = new BigDecimal(0);
+    public DiscountStrategy getDiscountForUser(User user, Event event) {
         DiscountStrategy strategy;
 
         if (user.getBirthDate().equals(event.getEventDate())) {
             strategy = strategies.get(0);
-            discount = discount.add(new BigDecimal(strategy.getDiscount()));
+            return strategy;
         }
 
         if (user.getBookedTickets()!=null && user.getBookedTickets().size()%10 == 9) {
             strategy = strategies.get(1);
-            discount = discount.add(new BigDecimal(strategy.getDiscount()));
+            return strategy;
         }
-        return discount;
+        return null;
     }
 
     public List<DiscountStrategy> getStrategies() {
