@@ -16,21 +16,18 @@ public class DBUserDAO implements UserDao{
     }
 
     public void createUser(User user) {
-
+        jdbcTemplate.update("INSERT INTO users (id, name, email) VALUES (?,?,?)",
+                user.getId(), user.getUserName(), user.getEmail());
     }
 
     public void deleteUser(User user) {
-
+        jdbcTemplate.update("DELETE FROM users where id=?",user.getId());
     }
 
     public User getUserByName(String name) {
         User responseUser = jdbcTemplate.queryForObject("select * from users where name = ?", new Object[]{name}, new RowMapper<User>() {
             public User mapRow(ResultSet resultSet, int i) throws SQLException {
-                long id = resultSet.getLong("id");
-                String name = resultSet.getString("name");
-                String email = resultSet.getString("email");
-                User user = new User(id, name, email);
-                return user;
+                return createUser(resultSet);
             }
         });
         return responseUser;
@@ -39,11 +36,7 @@ public class DBUserDAO implements UserDao{
     public User getUserById(long id) {
         User responseUser = jdbcTemplate.queryForObject("select * from users where id = ?", new Object[]{id}, new RowMapper<User>() {
             public User mapRow(ResultSet resultSet, int i) throws SQLException {
-                long id = resultSet.getLong("id");
-                String name = resultSet.getString("name");
-                String email = resultSet.getString("email");
-                User user = new User(id, name, email);
-                return user;
+                return createUser(resultSet);
             }
         });
         return responseUser;
@@ -52,11 +45,7 @@ public class DBUserDAO implements UserDao{
     public User getUserByEmail(String email) {
         User responseUser = jdbcTemplate.queryForObject("select * from users where email = ?", new Object[]{email}, new RowMapper<User>() {
             public User mapRow(ResultSet resultSet, int i) throws SQLException {
-                long id = resultSet.getLong("id");
-                String name = resultSet.getString("name");
-                String email = resultSet.getString("email");
-                User user = new User(id, name, email);
-                return user;
+                return createUser(resultSet);
             }
         });
         return responseUser;
@@ -64,5 +53,13 @@ public class DBUserDAO implements UserDao{
 
     public void addBookedTicket(Ticket ticket, User user) {
 
+    }
+
+    private User createUser(ResultSet resultSet) throws SQLException {
+        long id = resultSet.getLong("id");
+        String name = resultSet.getString("name");
+        String email = resultSet.getString("email");
+        User user = new User(id, name, email);
+        return user;
     }
 }

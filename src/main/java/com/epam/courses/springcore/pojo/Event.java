@@ -22,6 +22,12 @@ public class Event {
         this.eventDate = eventDate;
     }
 
+    public Event(String name, Rating rating, Date eventDate) {
+        this.name = name;
+        this.rating = rating;
+        this.eventDate = eventDate;
+    }
+
     public String getName() {
         return name;
     }

@@ -43,4 +43,8 @@ public class MapAuditoriumDAO implements AuditoriumDAO {
         return auditoriums.get(name);
     }
 
+    public void addAuditorium(Auditorium auditorium) {
+
+    }
+
 }

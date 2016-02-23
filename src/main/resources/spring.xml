@@ -32,7 +32,6 @@
                 <value>classpath:auditorium_a.properties</value>
                 <value>classpath:auditorium_b.properties</value>
                 <value>classpath:auditorium_c.properties</value>
-                <value>classpath:database_connection_parametrs.properties</value>
             </list>
         </property>
         <property name="ignoreResourceNotFound" value="true"/>
@@ -57,45 +56,46 @@
     </bean>
 
     <bean id="bookingService" class="com.epam.courses.springcore.services.BookingService">
-        <constructor-arg ref="mapAuditoriumDao"/>
-        <constructor-arg ref="mapEventDao"/>
-        <constructor-arg ref="mapUserDao"/>
+        <constructor-arg ref="dbAuditoriumDAO"/>
+        <constructor-arg ref="dbEventDao"/>
+        <constructor-arg ref="dbUserDao"/>
     </bean>
 
     <bean id="auditoriumService" class="com.epam.courses.springcore.services.AuditoriumService">
-        <constructor-arg ref="mapAuditoriumDao"/>
+        <constructor-arg ref="dbAuditoriumDAO"/>
     </bean>
 
     <bean id="eventService" class="com.epam.courses.springcore.services.EventService">
-        <constructor-arg ref="mapEventDao"/>
-        <constructor-arg ref="mapAuditoriumDao"/>
+        <constructor-arg ref="dbEventDao"/>
+        <constructor-arg ref="dbAuditoriumDAO"/>
     </bean>
 
-    <bean id="counterAspect" class="com.epam.courses.aop.aspects.CounterAspect"></bean>
+    <bean id="counterAspect" class="com.epam.courses.aop.aspects.CounterAspect">
+        <constructor-arg ref="jdbcTemplate"/>
+    </bean>
 
     <bean id="discountAspect" class="com.epam.courses.aop.aspects.DiscountAspect"></bean>
 
     <bean id="luckyWinnerAspect" class="com.epam.courses.aop.aspects.LuckyWinnerAspect"></bean>
 
     <jdbc:embedded-database id="dataSource" type="H2">
-        <jdbc:script location="classpath:create-db.sql" />
-        <jdbc:script location="classpath:insert-data.sql" />
+        <jdbc:script location="classpath:/sql/create-db.sql" />
+        <jdbc:script location="classpath:/sql/insert-data.sql" />
     </jdbc:embedded-database>
 
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
         <constructor-arg ref="dataSource"/>
     </bean>
 
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-
-        <property name="driverClassName" value="${jdbc.driverClassName}"/>
-        <property name="url" value="${jdbc.url}"/>
-        <property name="username" value="${jdbc.username}"/>
-        <property name="password" value="${jdbc.password}"/>
-
+    <bean id="dbUserDao" class="com.epam.courses.springcore.dao.DBUserDAO">
+        <constructor-arg ref="jdbcTemplate"/>
     </bean>
 
-    <bean id="dbUserDao" class="com.epam.courses.springcore.dao.DBUserDAO">
+    <bean id="dbEventDao" class="com.epam.courses.springcore.dao.DBEventDAO">
+        <constructor-arg ref="jdbcTemplate"/>
+    </bean>
+
+    <bean id="dbAuditoriumDAO" class="com.epam.courses.springcore.dao.DBAuditoriumDAO">
         <constructor-arg ref="jdbcTemplate"/>
     </bean>
 
