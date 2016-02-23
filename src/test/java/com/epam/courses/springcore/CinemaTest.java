@@ -4,6 +4,8 @@ import com.epam.courses.aop.aspects.CounterAspect;
 import com.epam.courses.aop.aspects.DiscountAspect;
 import com.epam.courses.springcore.pojo.*;
 import com.epam.courses.springcore.services.*;
+import org.h2.tools.Server;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.math.BigDecimal;
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -47,7 +50,13 @@ public class CinemaTest {
     private Ticket ticket_2 = new Ticket(new BigDecimal(75), 11);
     private Ticket ticket_3= new Ticket(new BigDecimal(75), 12);
 
-    @Test
+    @Before
+    public void setUp() throws SQLException {
+        Server webServer = Server.createWebServer("-web", "-webAllowOthers", "-webPort", "8083").start();
+        Server server = Server.createTcpServer("-tcp", "-tcpAllowOthers", "-tcpPort" ,"9093").start();
+    }
+
+   /* @Test
     public void userRegistrationTest() {
         userSevice.registerUser(user);
         assertEquals(userSevice.getUserById(user.getId()), user);
@@ -58,7 +67,7 @@ public class CinemaTest {
         userSevice.registerUser(user);
         userSevice.deleteUser(user);
         assertEquals(userSevice.getUserById(user.getId()), null);
-    }
+    }*/
 
     @Test
     public void getUserByEmailAndNameTest() {
@@ -67,7 +76,7 @@ public class CinemaTest {
         assertEquals(userSevice.getUserByName(user.getUserName()), user);
     }
 
-    @Test
+   /* @Test
     public void createEventTest(){
         eventService.createEvent(event);
         assertEquals(eventService.getEventByName(event.getName()), event);
@@ -125,6 +134,7 @@ public class CinemaTest {
         discountService.getDiscountForUser(user,event).getDiscount();
         assertTrue(!DiscountAspect.getDiscountTotalCounter().isEmpty());
         assertTrue(!DiscountAspect.getDiscountForUserCounter().get(user.getId()).isEmpty());
-    }
+    }*/
+
 
 }
