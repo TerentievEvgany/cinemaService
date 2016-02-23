@@ -1,7 +1,6 @@
 package com.epam.courses.springcore.pojo;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 public class Ticket {
 

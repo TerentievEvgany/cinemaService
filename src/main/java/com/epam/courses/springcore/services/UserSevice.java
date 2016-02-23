@@ -1,6 +1,5 @@
 package com.epam.courses.springcore.services;
 
-import com.epam.courses.springcore.dao.MapUserDAO;
 import com.epam.courses.springcore.dao.UserDao;
 import com.epam.courses.springcore.pojo.User;
 
